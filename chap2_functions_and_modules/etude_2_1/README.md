@@ -1,0 +1,1 @@
+Write a module with a function that takes the length and width of a rectangle and returns (yields) its area. Name the module Geom, and name the function area. Save the module in a file named geom.ex. The function has arity 2, because it needs two pieces of information to make the calculation. In Elixir-speak: write function area/2.
