@@ -4,14 +4,17 @@ defmodule Geom do
 
   ## Examples
 
-    iex> Geom.area(:rectangle, 3, 4)
-    12
+    iex> Geom.area({:rectangle, 7, 3})
+    21
 
-    iex> Geom.area(:triangle, 3, 5)
-    7.5
+    iex> Geom.area({:triangle, 7, 3})
+    10.5
 
-    iex> Geom.area(:ellipse, 2, 4)
-    25.132741228718345
+    iex> Geom.area({:ellipse, 7, 3})
+    65.97344572538566
+
+    iex> Geom.area(:rectangle, 7, 3)
+    ** (UndefinedFunctionError) undefined function: Geom.area/3
   """
 
   @doc """
@@ -20,13 +23,19 @@ defmodule Geom do
   """
   def area({shape, a, b}), do: area(shape, a, b)
 
-  defp area(shape, a, b) do
-    case shape do
-      :rectangle when a >= 0 and b >= 0 -> a * b
-      :triangle  when a >= 0 and b >= 0 -> (a * b) / 2.0
-      :ellipse   when a >= 0 and b >= 0 -> :math.pi() * a * b
-      _ -> {:error, "invalid parameters"}
-    end
+  defp area(:rectangle, a, b) when a >= 0 and b >= 0 do
+    a * b
   end
 
+  defp area(:triangle, a, b) when a >= 0 and b >= 0 do
+    (a * b) / 2.0
+  end
+
+  defp area(:ellipse, a, b) when a >= 0 and b >= 0 do
+    :math.pi() * a * b
+  end
+
+  defp area(_shape, _a, _b)do
+    0
+  end
 end

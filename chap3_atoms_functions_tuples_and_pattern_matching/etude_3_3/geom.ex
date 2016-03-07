@@ -18,13 +18,19 @@ defmodule Geom do
   Calculates the area given a `shape`, `a` and `b`.
   where `a` and `b` represent dimentions relevan to the `shape`.
   """
-  def area(shape, a, b) do
-    case shape do
-      :rectangle when a >= 0 and b >= 0 -> a * b
-      :triangle  when a >= 0 and b >= 0 -> (a * b) / 2.0
-      :ellipse   when a >= 0 and b >= 0 -> :math.pi() * a * b
-      _ -> {:error, "invalid parameters"}
-    end
+  def area(:rectangle, a, b) when a >= 0 and b >= 0 do
+    a * b
   end
 
+  def area(:triangle, a, b) when a >= 0 and b >= 0 do
+    (a * b) / 2.0
+  end
+
+  def area(:ellipse, a, b) when a >= 0 and b >= 0 do
+    :math.pi() * a * b
+  end
+
+  def area(_shape, _a, _b)do
+    0
+  end
 end
